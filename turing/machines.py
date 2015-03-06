@@ -2,14 +2,13 @@ __author__ = 'slouchart'
 
 import tape
 
+default_blank = '_'
 
 class TuringMachine(object):
 
-    blank = ' '
-
-    def __init__(self, input="", symbols=[], states=[], initial=0, finals=[], transitions={}):
-        self._tape = tape.Tape(input)
-        self._tape.blank = TuringMachine.blank
+    def __init__(self, symbols=[], states=[], initial=0, finals=[], transitions={}, initial_input="", blank=default_blank):
+        self._tape = tape.Tape(blank, initial_input)
+        self.blank = blank
         self.states = states
         self.symbols = symbols
         self.initial_state = initial
@@ -43,7 +42,7 @@ class TuringMachine(object):
         self._tape[self._tape.current_index] = symbol
 
     def erase_symbol(self):
-        self.write_symbol(' ')
+        self.write_symbol(self.blank)
 
     def move_head_right(self):
         self._tape.move_right()

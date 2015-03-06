@@ -2,7 +2,7 @@ __author__ = 'slouchart'
 
 
 class Tape(object):
-    def __init__(self, input="", blank=' '):
+    def __init__(self, blank, input=""):
         self._tape = {}
         for i in range(len(input)):
             self._tape[i] = input[i]
@@ -23,7 +23,7 @@ class Tape(object):
         try:
             return self._tape[item]
         except KeyError:
-            return ' '
+            return self.blank
 
     def __setitem__(self, key, value):
         self._tape[key] = value

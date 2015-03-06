@@ -2,7 +2,7 @@ __author__ = 'slouchart'
 
 
 from turing.program import ProgramBuilder
-from turing.machines import TuringMachine
+from turing.machines import TuringMachine, default_blank as blank
 
 """
    Computes the successor of a binary integer
@@ -10,7 +10,6 @@ from turing.machines import TuringMachine
 
 if __name__ == "__main__":
     prg = ProgramBuilder()
-    blank = TuringMachine.blank
 
     prg.add_step('I', blank, 'write', blank, 'move_left', 'I')
     prg.add_step('I', '0', 'write', '1', 'move_left', 'A')
@@ -24,8 +23,7 @@ if __name__ == "__main__":
     prg.add_step('B', '1', 'write', '0', 'move_left', 'B')
     prg.add_step('B', blank, 'write', '1', 'null', 'F')
 
-    machine = TuringMachine(input="",
-                            symbols=['0', '1'],
+    machine = TuringMachine(symbols=['0', '1'],
                             states=['I', 'A', 'B', 'F'],
                             initial='I',
                             finals=['F'],

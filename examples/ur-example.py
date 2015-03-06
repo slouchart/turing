@@ -5,11 +5,10 @@ __author__ = 'slouchart'
 """
 
 from turing.program import ProgramBuilder
-from turing.machines import TuringMachine
+from turing.machines import TuringMachine, default_blank as blank
 
 if __name__ == "__main__":
     prg = ProgramBuilder()
-    blank = TuringMachine.blank
 
     prg.add_step('e0', blank, 'write', '0', 'move_right', 'e1')
     prg.add_step('e1', blank, 'write', blank, 'move_right', 'e2')
@@ -21,8 +20,7 @@ if __name__ == "__main__":
     prg.add_step('e2', 'S', 'null', None, 'null', 'F')
     prg.add_step('e3', 'S', 'null', None, 'null', 'F')
 
-    machine = TuringMachine(input="",
-                            symbols=['0', '1', 'S'],
+    machine = TuringMachine(symbols=['0', '1', 'S'],
                             states=['e0', 'e1', 'e2', 'e3', 'e4', 'F'],
                             initial='e0',
                             finals=['F'],
